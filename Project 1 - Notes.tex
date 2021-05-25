@@ -1,0 +1,268 @@
+\documentclass[a4paper]{article}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[utf8]{inputenc}
+\usepackage[official]{eurosym}
+\usepackage[left=2cm, right=2cm, top=2cm]{geometry} %right=30mm,left=30mm,top=15mm,bottom=20mm für die Bachelorarbeit/Seminararbeit
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{adjustbox}
+\usepackage{mathtools}
+\usepackage{centernot}
+\usepackage{sectsty}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist}% very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{perpage}
+\usepackage{hyperref}
+\usepackage[perpage,symbol*]{footmisc}
+\usepackage{chngcntr}
+\usepackage{amsthm}
+\usepackage{makecell}
+\usepackage{csquotes}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{framed}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+\subsectionfont{\itshape}
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+\allowdisplaybreaks
+\linespread{1.1}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Project I: One-Sector Growth Model} % add others
+\rhead{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+\chead{Project I}
+\title{Dynamic Macroeconomics with Numerics: Project I}
+\author{Hashem Zehi, Samuel (120112285)\\Kotiers, Róza (XXXXX)\\Polzin, Julian (XXXXX)} % add others
+\date{\today}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{note}{Note}[section]
+\newtheorem{prop}{Proposition}[section]
+\newcommand\Tau{\mathcal{T}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}} %Integral d 
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\begin{document}
+\maketitle
+\newpage
+\section{Part I: Deterministic Version}
+We have a representative agents with preference given by
+	\begin{align*}
+	\sum\limits_{t=0}^{\infty} \beta^t u(c_t),
+	\end{align*}
+with $\beta \in (0,1)$. We assume $\partial u(c_t)/\partial c_t > 0$, and $u$ being concave and twice differentiable. Output is now a function of the utilized machines $\kappa_t$. This gives the aggregate resource constraint
+	\begin{align*}
+	c_t + i_t \leq z f(\kappa_t),
+	\end{align*}	
+with all variables having their usual meaning. $f$ is strictly increasing, concave and twice differentiable. Furthermore, the marginal product of capital converges to zero for the stock going to infinity. Unused capital does not depreciate. We have capital accumulation according to 
+	\begin{align*}
+	k_{t+1} \leq (1-\delta)\kappa_t + (k_t - \kappa_t)+i_t,
+	\end{align*}	
+where we have $k_t \geq \kappa_t$. 
+\subsection{(a) Social planner problem}	
+First we can rewrite the preferences by plugging in a rewritten aggregate resource constraint:
+	\begin{align*}
+	\sum\limits_{t=0}^{\infty} \beta^t u\big( z f(\kappa_t)-i_t \big)
+	\end{align*}
+subject to the capital accumulation as described above. We can further consolidate this by plugging in the capital accumulation such that we have
+	\begin{align*}
+	\sum\limits_{t=0}^{\infty} \beta^t u\big( z f(\kappa_t)-\big[ k_{t+1}-(1-\delta)\kappa_t-k_t + \kappa_t \big] \big) = \sum\limits_{t=0}^{\infty} \beta^t u\big( z f(\kappa_t)- \delta \kappa_t - k_t - k_{t+1} \big).
+	\end{align*}
+We denote this expression by $\mathfrak V(k_{t+1},\kappa_t)$ and write it explicitly for any given two periods
+	\begin{align}
+	\mathfrak V(k_{t+1},\kappa_t) 	&= \dots + \beta^t u\big( z f(\kappa_t)- \delta \kappa_t - k_t - k_{t+1} \big) \\
+											&\quad\quad + \beta^{t+1} u\big( z f(\kappa_{t+1})- \delta \kappa_{t+1} - k_{t+1} - k_{t+2} \big) + \dots \nonumber
+	\end{align}	
+The choice variables are the current period machine utilization $\kappa_t$ and the next period capital stock $k_{t+1}$. Thus, we have the FONCs given by
+	\begin{align}
+	\frac{\partial}{\partial \kappa_{t}}\mathfrak V(k_{t+1},\kappa_t) 	&= \beta^t \big( z f^\prime(\kappa_t)-\delta\big)u_{\kappa_t,t}(\dots) \overset{!}{=} 0,
+	\intertext{and}
+	\frac{\partial}{\partial k_{t+1}}\mathfrak V(k_{t+1},\kappa_t)		&= \beta^t (-1) u_{k_{t+1},t} (\dots) + \beta^{t+1} (1) u_{k_{t+1},t+1} (\dots) \overset{!}{=} 0.
+	\end{align}
+Note that $u_{x,t}(\dots)$ denotes the respective partial derivatives w.r.t.\ $x$ evaluated at period $t$ arguments. Looking at (2), and noting that $u^\prime_{\kappa_t,t}(\dots) > 0$, we need to have
+	\begin{align}
+	z f^\prime(\kappa_t) = \delta.
+	\end{align}
+The marginal product of utilized machines needs to be equal to the depreciation rate. From (3) we have
+	\begin{align}
+	\beta^t u^\prime_t(\dots) = \beta^{t+1} u_{t+1}^\prime(\dots) \Leftrightarrow 1 = \frac{u^\prime_t(\dots)}{\beta u^\prime_{t+1}(\dots)},
+	\end{align}	
+which is simply the standard Euler equation, so the marginal utility of consumption today must be equal to the one-period discounted marginal utility tomorrow.
+
+Note that this result is not particularly surprising. In the standard model we also have the marginal product of capital being equal to the depreciation rate. So we can view this non-utilization as some sort of saving mechanism that has a marginal product of zero. But if we do utilize this capital then we have a strictly positive marginal product, so there is no incentive to not fully utilize this capital, particularly since we discount future consumption.
+\subsection{(b)-(c) Capital utilization: steady state and transversality condition}
+In order to guarantee existence of a steady state, or equivalently to pin down a unique initial capital stock, we require a transversality condition on all endogenous state variables. In this model, we only have one endogenous state variable, the next periods capital stock as it is determined in the current period and then simply taken as given. Thus we have
+	\begin{align}
+	\lim\limits_{t\rightarrow\infty} \beta^{t-1} u^\prime(c_{t-1}^*)k_t^* = 0,
+	\end{align}
+and some given $k_0 \geq 0$. We assume strictly positive values for state variables, namely $k_t > 0$ in order make sure we do have an interior solution. Lastly, we assume the Euler equation to be fulfilled. Then we have the following:
+	\begin{align*}
+	\kappa_t 					&\rightarrow \kappa^* \\
+	k_t ,k_{t+1}				&\rightarrow k^* \\
+	c_t 						&\rightarrow c^* \\
+	i_t 							&\rightarrow i^* 
+	\end{align*}
+We can use the second optimality condition to obtain
+	\begin{align*}
+	\kappa^* = f^{\prime -1}(z^{-1}\delta).
+	\end{align*}
+As we do not have capital under-utilization we also have
+	\begin{align*}
+	\kappa^* = k^*.
+	\end{align*}
+From the capital accumulation equation, at equality, we then have
+	\begin{align*}
+	k^* = (1-\delta)k^* + (k^* - k^*) + i^* \Leftrightarrow i^* = \delta k^*.
+	\end{align*}	
+This can be written in terms of $z$ and $\delta$, given the inverse of the derivative of the production function exists:
+	\begin{align*}
+	i^* = \delta f^{\prime -1}(z^{-1}\delta)
+	\end{align*}
+We can use this to determine the steady-state consumption in terms of the physical capital stock:
+	\begin{align*}
+	c^* 	&= z f(k^*)- \delta k^*,
+	\intertext{and in terms of the model parameters we have}
+	c^* 	&= z f\Big( f^{\prime -1}(z^{-1}\delta) \Big) - \delta f^{\prime -1}(z^{-1}\delta).
+	\end{align*}
+Thus we have a description for consumption, capital, and investment in terms of the depreciation rate, the level of technology, using only the functional form of the production function. 	
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+\newpage
+\section{Part II: Stochastic One-Sector Growth Model with Variable Capital Utilization}
+The preferences of the \textbf{representative agent} are given by
+	\begin{align*}
+	\sum\limits_{t=0}^{\infty} \beta^t \log(c_t) ,
+	\end{align*} 
+with the production function given by
+	\begin{align*}
+	y_t = z_t^{1-\alpha}(k_t U_t)^\alpha,
+	\end{align*}	
+with $\alpha,\beta,U_t \in (0,1)$. Using capital more intensely increases the capital depreciation rate
+	\begin{align*}
+	\delta_t = \delta U_t^\phi,
+	\end{align*}	
+given $\delta \in (0,1)$ and $\phi > 1$. The law of motion for physical capital is given by
+	\begin{align*}
+	k_{t+1} = (1-\delta_t)k_t + i_t.
+	\end{align*}	
+Technological progress is captured by
+	\begin{align*}
+	z_t 	&= \exp (x_t) \\
+	x_t 	&= \rho x_{t-1} + \epsilon_t,
+	\end{align*}	
+with $\rho \in (0,1)$, such that we have non-explosive behavior to shocks on the error term $\epsilon_t \overset{\text{i.i.d.}}{\sim} \mathcal N(0,\sigma_\epsilon)$. In the stationary steady-state we have $\sigma_\epsilon = 0$. The aggregate resource constraint is given by
+	\begin{align*}
+	c_t + i_t \leq y_t.
+	\end{align*}
+\subsection{(a): Social planner problem}	
+Since we have a stochastic term need to formulate the maximization problem in terms of expectation formed in period zero:
+	\begin{align*}
+	\max\limits_{c_t} \mathbb E_0 \sum\limits_{t=0}^{\infty} \beta^t \log (c_t),
+	\end{align*}
+subject to the conditions laid out above. We can consolidate these conditions as follows; first use the production function in the aggregate resource constraint such that we have
+	\begin{align*}
+	c_t \leq z_t^{1-\alpha}(k_t U_t)^\alpha - i_t.
+	\end{align*}	
+We then rewrite the law of motion for physical capital keeping the gross investment on one side such that
+	\begin{align*}
+	i_t = k_{t+1} - (1-\delta_t)k_t = k_{t+1} - k_t + \delta_t k_t .
+	\end{align*}	
+Now we use the capital depreciation rate and have
+	\begin{align*}
+	i_t = k_{t+1} - k_t + \delta U_t^\phi k_t. 
+	\end{align*}	
+We can now use this in the reformulation of the aggregate resource constraint:
+	\begin{align*}
+	c_t \leq z_t^{1-\alpha}(k_t U_t)^\alpha - k_{t+1} + k_t - \delta U_t^\phi k_t.
+	\end{align*}	
+This is then plugged into the original maximization.
+	\begin{leftbar}
+		\begin{prop}[Social Planner Problem]
+		The social planner maximizes the expected discounted lifetime utility with respect to current period capital utilization and next period's capital stock:
+			\begin{align}
+			\max\limits_{U_t,k_{t+1}} \mathbb E_0 \sum\limits_{t=0}^{\infty} \beta^t \log \Big(  z_t^{1-\alpha}(k_t U_t)^\alpha - k_{t+1} + k_t - \delta U_t^\phi k_t \Big)
+			\end{align}	
+		subject to the stochastic technology level which follows
+			\begin{align}
+			z_t = \exp(x_t),\ x_t = \rho x_{t-1} + \epsilon_t,
+			\end{align}	
+		given some initial capital stock $k_0 \geq 0$. 	
+		\end{prop}
+	\end{leftbar}	
+Furthermore, we can take the partial derivative w.r.t.\ $k_{t+1}$ of (7) in order to obtain the FONC
+	\begin{align*}
+	\mathbb E_0 \beta^t \Big\{ \frac{-1}{z_t^{1-\alpha}(k_t U_t)^\alpha - k_{t+1} + k_t - \delta U_t^\phi k_t} \Big\} + \mathbb E_0 \beta^{t+1} \Big\{ \frac{\alpha U_{t+1} z_{t+1}^{1-\alpha}(k_{t+1}U_{t+1})^{\alpha-1} + 1 - \delta U_{t+1}^\phi}{z_{t+1}^{1-\alpha}(k_{t+1}U_{t+1})^\alpha-k_{t+2}+k_{t+1}-\delta U_{t+1}^\phi k_{t+1}} \Big\} \overset{!}{=} 0 
+	\end{align*}
+We can write this as the Euler equation for this maximization problem
+	\begin{align*}
+	\mathbb E_0 \frac{1}{c_t} = \mathbb E_0 \beta \frac{1}{c_{t+1}} \frac{\partial c_{t+1}}{\partial k_{t+1}} \Leftrightarrow 1 = \mathbb E_0 \beta \frac{c_{t}}{c_{t+1}} \frac{\partial c_{t+1}}{\partial k_{t+1}}
+	\end{align*}
+Taking the partial derivative w.r.t.\ $U_t$ yields another FONC:
+	\begin{align*}
+	\mathbb E_0 \beta^t \frac{\alpha z_t^{1-\alpha}(k_t U_t)^{\alpha-1}k_t- \phi \delta U_t^{\phi-1}k_t}{c_t} \overset{!}{=} 0
+	\end{align*}
+As this is a static equation we can omit the expectation operator here. This FONC is equivalent to the expression
+	\begin{align*}
+	\phi \delta U_t^{\phi-1}k_t 	&= \alpha z_t^{1-\alpha}(k_t U_t)^{\alpha-1}k_t \\
+	\phi \delta U_t^{\phi-1}k_t 	&= \alpha z_t^{1-\alpha} k_t^{\alpha}U_t^{\alpha-1} \\
+	\phi \delta U_t^{\phi-1} 		&= \alpha z_t^{1-\alpha} k_t^{\alpha-1} U_t^{\alpha-1} \\
+	U_t^{\phi-\alpha} 				&= (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \\
+	U_t 								&= \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}}.
+	\end{align*}
+In words, the capital utilization only depends on the current level of physical capital, the current level of technology and the parameters of the model. It has no time-path, but rather implicitly follows a function of the time path for physical capital. 	
+
+
+\subsection{(b): Steady state calculation}
+Starting with the level of technology, we know that $x^* \rightarrow 0$ in a world without shocks, as any shocks die out due to $\rho \in (0,1)$. Thus we have $z^* \rightarrow \exp(0) = 1$. For the capital stock, using the law of motion for physical capital, we have
+	\begin{align*}
+	k^* = (1-\bar \delta)k^* + i^* \Leftrightarrow i^* = \bar\delta k^*,
+	\end{align*}
+namely that the gross investment equals the depreciated capital.	
+
+We then have the stationary steady state of capital utilization given by
+	\begin{align*}
+	U = \Big( \alpha(\bar \delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{1}{\phi-\alpha}}
+	\end{align*}
+We may use this in the Euler equation to get
+	\begin{align*}
+	0 	&= \beta \Big\{ \alpha U z^{1-\alpha}(k U)^{\alpha-1} + 1 - \bar \delta U^\phi \Big\} -1 
+	\intertext{and when plugging in the previous result, dropping $z$ since it is equal to one, we have}
+	0 	&= \beta \Big\{ \alpha U^\alpha k^{\alpha-1} + 1 - \bar\delta U^\phi \Big\} - 1 \\
+	0	&= \beta \Big\{ \alpha \Big( \alpha(\bar \delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\alpha}{\phi-\alpha}}k^{\alpha-1}+1-\bar\delta \Big( \alpha(\bar \delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\phi}{\phi-\alpha}} \Big\}-1
+	\end{align*}
+
+\textit{time path for consumption, assuming linearity around the stationary steady state}:
+	\begin{align*}
+	c_{t+1}^* = \beta \frac{1}{c_{t}^*} \frac{\partial c_{t+1}}{\partial k_{t+1}} = \beta \frac{1}{c_t^*} \Big[ \alpha U_{t+1} z_{t+1}^{1-\alpha} (k_{t+1}U_{t+1})^{\alpha-1}+1-\delta U_{t+1}^\phi \Big]
+	\end{align*}	
+
+
+
+
+
+\end{document}
