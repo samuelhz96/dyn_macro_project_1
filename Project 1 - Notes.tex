@@ -73,102 +73,32 @@ with all variables having their usual meaning. $f$ is strictly increasing, conca
 	k_{t+1} \leq (1-\delta)\kappa_t + (k_t - \kappa_t)+i_t,
 	\end{align*}	
 where we have $k_t \geq \kappa_t$. 
-\subsection{(a) Social planner problem}	
-First we can rewrite the preferences by plugging in a rewritten aggregate resource constraint:
-	\begin{align*}
-	\sum\limits_{t=0}^{\infty} \beta^t u\big( z f(\kappa_t)-i_t \big)
-	\end{align*}
-subject to the capital accumulation as described above. We can further consolidate this by plugging in the capital accumulation such that we have
-	\begin{align*}
-	\sum\limits_{t=0}^{\infty} \beta^t u\big( z f(\kappa_t)-\big[ k_{t+1}-(1-\delta)\kappa_t-k_t + \kappa_t \big] \big) = \sum\limits_{t=0}^{\infty} \beta^t u\big( z f(\kappa_t)- \delta \kappa_t - k_t - k_{t+1} \big).
-	\end{align*}
-We denote this expression by $\mathfrak V(k_{t+1},\kappa_t)$ and write it explicitly for any given two periods
-	\begin{align}
-	\mathfrak V(k_{t+1},\kappa_t) 	&= \dots + \beta^t u\big( z f(\kappa_t)- \delta \kappa_t - k_t - k_{t+1} \big) \\
-											&\quad\quad + \beta^{t+1} u\big( z f(\kappa_{t+1})- \delta \kappa_{t+1} - k_{t+1} - k_{t+2} \big) + \dots \nonumber
-	\end{align}	
-The choice variables are the current period machine utilization $\kappa_t$ and the next period capital stock $k_{t+1}$. Thus, we have the FONCs given by
-	\begin{align}
-	\frac{\partial}{\partial \kappa_{t}}\mathfrak V(k_{t+1},\kappa_t) 	&= \beta^t \big( z f^\prime(\kappa_t)-\delta\big)u_{\kappa_t,t}(\dots) \overset{!}{=} 0,
-	\intertext{and}
-	\frac{\partial}{\partial k_{t+1}}\mathfrak V(k_{t+1},\kappa_t)		&= \beta^t (-1) u_{k_{t+1},t} (\dots) + \beta^{t+1} (1) u_{k_{t+1},t+1} (\dots) \overset{!}{=} 0.
-	\end{align}
-Note that $u_{x,t}(\dots)$ denotes the respective partial derivatives w.r.t.\ $x$ evaluated at period $t$ arguments. Looking at (2), and noting that $u^\prime_{\kappa_t,t}(\dots) > 0$ as well as $\beta > 0$, we need to have
-	\begin{align}
-	z f^\prime(\kappa_t) = \delta.
-	\end{align}
-The marginal product of utilized machines needs to be equal to the depreciation rate. Imagine the depreciation rate being smaller than the marginal product of utilized machines, then it would be optimal for the firm to increase the utilization of machines. This comes from the fact that the profit of additional usage of machines is still higher than the cost in form of depreciation. Until both are equalized, the firm has an incentive to increase the usage. The same argumentation holds for utilized capital that produces a lower marginal product than the depreciation rate, since the cost of depreciation is higher than the marginal product. Then the firm wants to reduce the utilized capital. Therefore it is only optimal if these two are equal. Now, from (3) we have
-	\begin{align}
-	\beta^t u^\prime_t(\dots) = \beta^{t+1} u_{t+1}^\prime(\dots) \Leftrightarrow 1 = \frac{u^\prime_t(\dots)}{\beta u^\prime_{t+1}(\dots)},
-	\end{align}	
-which is simply the standard Euler equation, so the marginal utility of consumption today must be equal to the one-period discounted marginal utility tomorrow. Of course a similar argument as for the depreciation-utilization relation in the optimum holds.
-\subsection{(b)-(c) Capital utilization: steady state and transversality condition}
-In order to guarantee existence of a steady state, or equivalently to pin down a unique initial capital stock, we require a transversality condition on all endogenous state variables. In this model, we only have one endogenous state variable, the next periods capital stock as it is determined in the current period and then simply taken as given. Thus we have
-	\begin{align}
-	\lim\limits_{t\rightarrow\infty} \beta^{t-1} u^\prime(c_{t-1}^*)k_t^* = 0,
-	\end{align}
-and some given $k_0 \geq 0$. We assume strictly positive values for state variables, namely $k_t > 0$ in order make sure we do have an interior solution. Lastly, we assume the Euler equation to be fulfilled. Then we have the following:
-	\begin{align*}
-	\kappa_t 					&\rightarrow \kappa^* \\
-	k_t ,k_{t+1}				&\rightarrow k^* \\
-	c_t 						&\rightarrow c^* \\
-	i_t 							&\rightarrow i^* 
-	\end{align*}
-We can use the second optimality condition to obtain
-	\begin{align*}
-	\kappa^* = f^{\prime -1}(z^{-1}\delta).
-	\end{align*}
-As we do not have capital under-utilization we also have
-	\begin{align*}
-	\kappa^* = k^*.
-	\end{align*}
-From the capital accumulation equation, at equality, we then have
-	\begin{align*}
-	k^* = (1-\delta)k^* + (k^* - k^*) + i^* \Leftrightarrow i^* = \delta k^*.
-	\end{align*}	
-This can be written in terms of $z$ and $\delta$, given the inverse of the derivative of the production function exists:
-	\begin{align*}
-	i^* = \delta f^{\prime -1}(z^{-1}\delta)
-	\end{align*}
-We can use this to determine the steady-state consumption in terms of the physical capital stock:
-	\begin{align*}
-	c^* 	&= z f(k^*)- \delta k^*,
-	\intertext{and in terms of the model parameters we have}
-	c^* 	&= z f\Big( f^{\prime -1}(z^{-1}\delta) \Big) - \delta f^{\prime -1}(z^{-1}\delta).
-	\end{align*}
-Thus we have a description for consumption, capital, and investment in terms of the depreciation rate, the level of technology, using only the functional form of the production function.
-
-This result is not particularly surprising. We can view this non-utilization as some sort of saving mechanism that has a marginal product of zero. But if we do utilize this capital then we have a strictly positive marginal product, so there is no incentive to not fully utilize this capital.
-%
-%
-%
-%
-%
-%
-%
-%
-%
-\newpage
-\subsection{(a) Social planner problem}
+\subsection{(a)-(b) social planner problem and steady state description}
 The social planner problem is written as the Lagrangian
 	\begin{align*}
 	\mathfrak L(\dots) = \sum\limits_{t=0}^{\infty} \beta^t \Bigg\{ u(c_t) + \lambda_t \Big(z f(\kappa_t)- k_{t+1}
 +(1-\delta)\kappa_t+k_t - \kappa_t -c_t \Big)+ \theta_t \Big( k_t - \kappa_t \Big) \Bigg\}
 	\end{align*}
+The $[\dots]$ denote the decision variables and the Lagrangian multipliers, i.e.\ consumption in the current period $c_t$, next periods capital stock $k_{t+1}$, and current period's capital utilization $\kappa_t$ in addition to the multipliers $\theta_t,\ \lambda_t$. 
+	
 Then we have the FONCs, and first start with the one for consumption:
 	\begin{align}
 	\frac{\partial}{\partial c_t}\mathfrak L(\dots) 			&= \beta^t \Big\{ u^\prime(c_t)-\lambda_t \Big\} \overset{!}{=}0, \\
 	\frac{\partial}{\partial \kappa_t}\mathfrak L(\dots)		&= \beta^t \Big\{ \lambda_t( z f^\prime(\kappa_t)+(1-\delta)-1)-\theta_t \Big\} \overset{!}{=} 0, \\
 	\frac{\partial}{\partial k_{t+1}}\mathfrak L(\dots)		&= \beta^t \Big\{ \lambda_t(-1) \Big\} + \beta^{t+1} \Big\{ \lambda_{t+1}+\theta_{t+1} \Big\} \overset{!}{=}0. 
 	\end{align}
+Note that we would also have the derivatives w.r.t.\ the Lagrangian multipliers. This is considered at a later point.	
+	
 From the first FONC we have
 	\begin{align*}
 	u^\prime(c_t) = \lambda_t.
-	\end{align*}	
-From the second equation we have
+	\end{align*}
+The shadow price on this constraint is equal to the marginal utility of consumption in each period. From the second equation we have
 	\begin{align*}
 	\theta_t = \lambda_t\big( z f^\prime(\kappa_t)-\delta \big)
 	\end{align*}
+This is the shadow price on the capacity constraint is equal to the marginal utility from consumption multiplied by the marginal product of utilized capital minus the depreciation rate. Note that this implies that if the marginal product of utilized capital is equal to the depreciation rate, the shadow price on the constraint must be zero, regardless of the consumption level in the respective period.
+	
 From the third FONC we have
 	\begin{align*}
 	\lambda_{t} = \beta \Big(\lambda_{t+1} + \theta_{t+1}  \Big)
@@ -177,18 +107,38 @@ and using the previous results we have
 	\begin{align*}
 	u^\prime(c_t) 	&= \beta u^\prime(c_{t+1})+ \beta u^\prime(c_{t+1})(z f^\prime(\kappa_{t+1})-\delta)
 	\intertext{which can be written as}
-	u^\prime(c_t)	&= \beta u^\prime(c_{t+1})[zf^\prime (\kappa_{t+1})+1-\delta],
+	u^\prime(c_t)	&= \beta u^\prime(c_{t+1})[zf^\prime (\kappa_{t+1})+1-\delta], \\
+	1 					&= \beta \frac{u^\prime(c_{t+1})}{u^\prime(c_t)}[z f^\prime (\kappa_{t+1})+1-\delta)].
 	\end{align*}		
-which is the Euler equation.	
+which is the Euler equation. The current period's marginal utility of consumption must equal the one-period discounted marginal utility of consumption tomorrow, multiplied by the marginal product of utilized capital tomorrow plus one minus the depreciation rate.
+
+For the conditions to be sufficient we additionally impose the transversality condition
+	\begin{align*}
+	\lim\limits_{t\rightarrow\infty} \beta^{t-1} u^\prime(c_{t-1})k_t = 0.
+	\end{align*}	
+We assume $k_t > 0$ in order to make sure that we have an interior solution. 	
+	
+Assume a binding utilization constraint where we then have $\kappa_t = k_t$ and $\theta_t \neq 0$. The inter-temporal rate of substitution must be smaller 1. Now assume it does not bind, i.e.\ $\theta_t = 0$, $k_t > \kappa_t$, then we have the inter-temporal rate of substitution being equal one, $z f^\prime (\kappa_t) = \delta$. This implies that we make use of the machines up until the point where this equation holds. Assuming zero investment, then the marginal product of utilization is lower than the depreciation rate, meaning that the capital stock is too high and will reduce. 
 
 
 
+\subsection{(c) steady state capital utilization}
+Assuming we have a steady state with full capital utilization, then we have the following:
+	\begin{align*}
+	\kappa_t 					&\rightarrow \kappa^* \\
+	k_t ,k_{t+1}				&\rightarrow k^* \\
+	c_t 						&\rightarrow c^* \\
+	i_t 							&\rightarrow i^* 
+	\end{align*}
+and of course $\kappa^* = k^*$. We look at the Euler equation, and then we have
+	\begin{align*}
+	1 							&= \beta \big[ z f^\prime(\kappa^*)+1-\delta \big] \\
+	\beta^{-1} +\delta-1	&= z f^\prime (\kappa^*) \\
+	\kappa^* 				&= f^{\prime -1} \Big( \frac{\beta^{-1} + \delta - 1}{z} \Big).
+	\end{align*}	
+This is the steady state level of capital utilization, a function only of the parameters of the model and the functional form of the derivative of the production function w.r.t.\ the capital utilization.	
 
-
-
-
-
-
+Very informal, but this result is not particularly surprising. We can view this non-utilization as some sort of saving mechanism that has a marginal product of zero. But if we do utilize this capital then we have a strictly positive marginal product, so there is no incentive to not fully utilize this capital.
 %
 %
 %
