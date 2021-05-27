@@ -102,8 +102,6 @@ The marginal product of utilized machines needs to be equal to the depreciation 
 	\beta^t u^\prime_t(\dots) = \beta^{t+1} u_{t+1}^\prime(\dots) \Leftrightarrow 1 = \frac{u^\prime_t(\dots)}{\beta u^\prime_{t+1}(\dots)},
 	\end{align}	
 which is simply the standard Euler equation, so the marginal utility of consumption today must be equal to the one-period discounted marginal utility tomorrow. Of course a similar argument as for the depreciation-utilization relation in the optimum holds.
-
-Note that this result is not particularly surprising. In the standard model we also have the marginal product of capital being equal to the depreciation rate. So we can view this non-utilization as some sort of saving mechanism that has a marginal product of zero. But if we do utilize this capital then we have a strictly positive marginal product, so there is no incentive to not fully utilize this capital, particularly since we discount future consumption.
 \subsection{(b)-(c) Capital utilization: steady state and transversality condition}
 In order to guarantee existence of a steady state, or equivalently to pin down a unique initial capital stock, we require a transversality condition on all endogenous state variables. In this model, we only have one endogenous state variable, the next periods capital stock as it is determined in the current period and then simply taken as given. Thus we have
 	\begin{align}
@@ -138,7 +136,9 @@ We can use this to determine the steady-state consumption in terms of the physic
 	\intertext{and in terms of the model parameters we have}
 	c^* 	&= z f\Big( f^{\prime -1}(z^{-1}\delta) \Big) - \delta f^{\prime -1}(z^{-1}\delta).
 	\end{align*}
-Thus we have a description for consumption, capital, and investment in terms of the depreciation rate, the level of technology, using only the functional form of the production function. 	
+Thus we have a description for consumption, capital, and investment in terms of the depreciation rate, the level of technology, using only the functional form of the production function.
+
+This result is not particularly surprising. We can view this non-utilization as some sort of saving mechanism that has a marginal product of zero. But if we do utilize this capital then we have a strictly positive marginal product, so there is no incentive to not fully utilize this capital.
 %
 %
 %
@@ -214,7 +214,7 @@ This is then plugged into the original maximization.
 		given some initial capital stock $k_0 \geq 0$. 	
 		\end{prop}
 	\end{leftbar}	
-Furthermore, we can take the partial derivative w.r.t.\ $k_{t+1}$ of (7) in order to obtain the FONC
+Furthermore, we can take the partial derivative of the argument which is supposed to be maximized w.r.t.\ $k_{t+1}$ to obtain the first FONC
 	\begin{align*}
 	\mathbb E_0 \beta^t \Big\{ \frac{-1}{z_t^{1-\alpha}(k_t U_t)^\alpha - k_{t+1} + k_t - \delta U_t^\phi k_t} \Big\} + \mathbb E_0 \beta^{t+1} \Big\{ \frac{\alpha U_{t+1} z_{t+1}^{1-\alpha}(k_{t+1}U_{t+1})^{\alpha-1} + 1 - \delta U_{t+1}^\phi}{z_{t+1}^{1-\alpha}(k_{t+1}U_{t+1})^\alpha-k_{t+2}+k_{t+1}-\delta U_{t+1}^\phi k_{t+1}} \Big\} \overset{!}{=} 0 
 	\end{align*}
@@ -222,7 +222,7 @@ We can write this as the Euler equation for this maximization problem
 	\begin{align*}
 	\mathbb E_0 \frac{1}{c_t} = \mathbb E_0 \beta \frac{1}{c_{t+1}} \frac{\partial c_{t+1}}{\partial k_{t+1}} \Leftrightarrow 1 = \mathbb E_0 \beta \frac{c_{t}}{c_{t+1}} \frac{\partial c_{t+1}}{\partial k_{t+1}}
 	\end{align*}
-Taking the partial derivative w.r.t.\ $U_t$ yields another FONC:
+Taking the partial derivative of the to be maximized argument in (7) w.r.t.\ $U_t$ yields the second FONC:
 	\begin{align*}
 	\mathbb E_0 \beta^t \frac{\alpha z_t^{1-\alpha}(k_t U_t)^{\alpha-1}k_t- \phi \delta U_t^{\phi-1}k_t}{c_t} \overset{!}{=} 0
 	\end{align*}
@@ -234,7 +234,22 @@ As this is a static equation we can omit the expectation operator here. This FON
 	U_t^{\phi-\alpha} 				&= (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \\
 	U_t 								&= \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}}.
 	\end{align*}
-In words, the capital utilization only depends on the current level of physical capital, the current level of technology and the parameters of the model. It has no time-path, but rather implicitly follows a function of the time path for physical capital. 	
+In words, the capital utilization only depends on the current level of physical capital, the current level of technology and the parameters of the model. We can 
+
+Using the Euler equation, we can write the time-path of consumption as
+	\begin{align*}
+	\mathbb E_0 c_{t+1}^* = \beta \mathbb E_0 \frac{1}{c_{t}^*} \frac{\partial c_{t+1}}{\partial k_{t+1}} = \beta \frac{1}{c_t^*} \Big[ \alpha U_{t+1} z_{t+1}^{1-\alpha} (k_{t+1}U_{t+1})^{\alpha-1}+1-\delta U_{t+1}^\phi \Big]
+	\end{align*}
+We have the law of motion for capital given by
+	\begin{align*}
+	k_{t+1} 	&= (1-\delta U_t^\phi)k_t - i_t, \\
+				&= \Big(1-\delta \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)k_t -  z_t^{1-\alpha}\Big(k_t \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)^\alpha + \beta \mathbb E_0 \frac{1}{c_{t-1}}\Big[ \alpha \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} z_t^{1-\alpha}\Big(k_t \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)^{\alpha-1}+1-\delta U_t^\phi \Big]
+	\end{align*}	
+% we need expressions for $i_t = c_t - y_t$ in terms of capital! 
+The time path for gross investment is given by
+	\begin{align*}
+	i_{t+1} = \mathbb E_0 z_{t+1}^{1-\alpha}(k_{t+1} U_{t+1})^\alpha - \beta \mathbb E_0 \frac{1}{c_{t}^*} \frac{\partial c_{t+1}}{\partial k_{t+1}} = \beta \frac{1}{c_t^*} \Big[ \alpha U_{t+1} z_{t+1}^{1-\alpha} (k_{t+1}U_{t+1})^{\alpha-1}+1-\delta U_{t+1}^\phi \Big]
+	\end{align*}	
 
 
 \subsection{(b): Steady state calculation}
@@ -251,15 +266,11 @@ We then have the stationary steady state of capital utilization given by
 We may use this in the Euler equation to get
 	\begin{align*}
 	0 	&= \beta \Big\{ \alpha U z^{1-\alpha}(k U)^{\alpha-1} + 1 - \delta U^\phi \Big\} -1 
-	\intertext{and when plugging in the previous result, dropping $z$ since it is equal to one, we have}
+	\intertext{and when plugging in the previous result, dropping $z$ since it is equal to one in the stationary steady state, we have}
 	0 	&= \beta \Big\{ \alpha U^\alpha k^{\alpha-1} + 1 - \delta U^\phi \Big\} - 1 \\
 	0	&= \beta \Big\{ \alpha \Big( \alpha(\delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\alpha}{\phi-\alpha}}k^{\alpha-1}+1-\delta \Big( \alpha(\delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\phi}{\phi-\alpha}} \Big\}-1
 	\end{align*}
 
-\textit{time path for consumption, assuming linearity around the stationary steady state}:
-	\begin{align*}
-	c_{t+1}^* = \beta \frac{1}{c_{t}^*} \frac{\partial c_{t+1}}{\partial k_{t+1}} = \beta \frac{1}{c_t^*} \Big[ \alpha U_{t+1} z_{t+1}^{1-\alpha} (k_{t+1}U_{t+1})^{\alpha-1}+1-\delta U_{t+1}^\phi \Big]
-	\end{align*}	
 
 
 
