@@ -93,15 +93,15 @@ The choice variables are the current period machine utilization $\kappa_t$ and t
 	\intertext{and}
 	\frac{\partial}{\partial k_{t+1}}\mathfrak V(k_{t+1},\kappa_t)		&= \beta^t (-1) u_{k_{t+1},t} (\dots) + \beta^{t+1} (1) u_{k_{t+1},t+1} (\dots) \overset{!}{=} 0.
 	\end{align}
-Note that $u_{x,t}(\dots)$ denotes the respective partial derivatives w.r.t.\ $x$ evaluated at period $t$ arguments. Looking at (2), and noting that $u^\prime_{\kappa_t,t}(\dots) > 0$, we need to have
+Note that $u_{x,t}(\dots)$ denotes the respective partial derivatives w.r.t.\ $x$ evaluated at period $t$ arguments. Looking at (2), and noting that $u^\prime_{\kappa_t,t}(\dots) > 0$ as well as $\beta > 0$, we need to have
 	\begin{align}
 	z f^\prime(\kappa_t) = \delta.
 	\end{align}
-The marginal product of utilized machines needs to be equal to the depreciation rate. From (3) we have
+The marginal product of utilized machines needs to be equal to the depreciation rate. Imagine the depreciation rate being smaller than the marginal product of utilized machines, then it would be optimal for the firm to increase the utilization of machines. This comes from the fact that the profit of additional usage of machines is still higher than the cost in form of depreciation. Until both are equalized, the firm has an incentive to increase the usage. The same argumentation holds for utilized capital that produces a lower marginal product than the depreciation rate, since the cost of depreciation is higher than the marginal product. Then the firm wants to reduce the utilized capital. Therefore it is only optimal if these two are equal. Now, from (3) we have
 	\begin{align}
 	\beta^t u^\prime_t(\dots) = \beta^{t+1} u_{t+1}^\prime(\dots) \Leftrightarrow 1 = \frac{u^\prime_t(\dots)}{\beta u^\prime_{t+1}(\dots)},
 	\end{align}	
-which is simply the standard Euler equation, so the marginal utility of consumption today must be equal to the one-period discounted marginal utility tomorrow.
+which is simply the standard Euler equation, so the marginal utility of consumption today must be equal to the one-period discounted marginal utility tomorrow. Of course a similar argument as for the depreciation-utilization relation in the optimum holds.
 
 Note that this result is not particularly surprising. In the standard model we also have the marginal product of capital being equal to the depreciation rate. So we can view this non-utilization as some sort of saving mechanism that has a marginal product of zero. But if we do utilize this capital then we have a strictly positive marginal product, so there is no incentive to not fully utilize this capital, particularly since we discount future consumption.
 \subsection{(b)-(c) Capital utilization: steady state and transversality condition}
@@ -246,14 +246,14 @@ namely that the gross investment equals the depreciated capital.
 
 We then have the stationary steady state of capital utilization given by
 	\begin{align*}
-	U = \Big( \alpha(\bar \delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{1}{\phi-\alpha}}
+	U = \Big( \alpha(\delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{1}{\phi-\alpha}}
 	\end{align*}
 We may use this in the Euler equation to get
 	\begin{align*}
-	0 	&= \beta \Big\{ \alpha U z^{1-\alpha}(k U)^{\alpha-1} + 1 - \bar \delta U^\phi \Big\} -1 
+	0 	&= \beta \Big\{ \alpha U z^{1-\alpha}(k U)^{\alpha-1} + 1 - \delta U^\phi \Big\} -1 
 	\intertext{and when plugging in the previous result, dropping $z$ since it is equal to one, we have}
-	0 	&= \beta \Big\{ \alpha U^\alpha k^{\alpha-1} + 1 - \bar\delta U^\phi \Big\} - 1 \\
-	0	&= \beta \Big\{ \alpha \Big( \alpha(\bar \delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\alpha}{\phi-\alpha}}k^{\alpha-1}+1-\bar\delta \Big( \alpha(\bar \delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\phi}{\phi-\alpha}} \Big\}-1
+	0 	&= \beta \Big\{ \alpha U^\alpha k^{\alpha-1} + 1 - \delta U^\phi \Big\} - 1 \\
+	0	&= \beta \Big\{ \alpha \Big( \alpha(\delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\alpha}{\phi-\alpha}}k^{\alpha-1}+1-\delta \Big( \alpha(\delta\phi)^{-1} k^{\alpha-1} \Big)^{\frac{\phi}{\phi-\alpha}} \Big\}-1
 	\end{align*}
 
 \textit{time path for consumption, assuming linearity around the stationary steady state}:
