@@ -148,6 +148,56 @@ This result is not particularly surprising. We can view this non-utilization as 
 %
 %
 %
+\newpage
+\subsection{(a) Social planner problem}
+The social planner problem is written as the Lagrangian
+	\begin{align*}
+	\mathfrak L(\dots) = \sum\limits_{t=0}^{\infty} \beta^t \Bigg\{ u(c_t) + \lambda_t \Big(z f(\kappa_t)- k_{t+1}
++(1-\delta)\kappa_t+k_t - \kappa_t -c_t \Big)+ \theta_t \Big( k_t - \kappa_t \Big) \Bigg\}
+	\end{align*}
+Then we have the FONCs, and first start with the one for consumption:
+	\begin{align}
+	\frac{\partial}{\partial c_t}\mathfrak L(\dots) 			&= \beta^t \Big\{ u^\prime(c_t)-\lambda_t \Big\} \overset{!}{=}0, \\
+	\frac{\partial}{\partial \kappa_t}\mathfrak L(\dots)		&= \beta^t \Big\{ \lambda_t( z f^\prime(\kappa_t)+(1-\delta)-1)-\theta_t \Big\} \overset{!}{=} 0, \\
+	\frac{\partial}{\partial k_{t+1}}\mathfrak L(\dots)		&= \beta^t \Big\{ \lambda_t(-1) \Big\} + \beta^{t+1} \Big\{ \lambda_{t+1}+\theta_{t+1} \Big\} \overset{!}{=}0. 
+	\end{align}
+From the first FONC we have
+	\begin{align*}
+	u^\prime(c_t) = \lambda_t.
+	\end{align*}	
+From the second equation we have
+	\begin{align*}
+	\theta_t = \lambda_t\big( z f^\prime(\kappa_t)-\delta \big)
+	\end{align*}
+From the third FONC we have
+	\begin{align*}
+	\lambda_{t} = \beta \Big(\lambda_{t+1} + \theta_{t+1}  \Big)
+	\end{align*}	
+and using the previous results we have
+	\begin{align*}
+	u^\prime(c_t) 	&= \beta u^\prime(c_{t+1})+ \beta u^\prime(c_{t+1})(z f^\prime(\kappa_{t+1})-\delta)
+	\intertext{which can be written as}
+	u^\prime(c_t)	&= \beta u^\prime(c_{t+1})[zf^\prime (\kappa_{t+1})+1-\delta],
+	\end{align*}		
+which is the Euler equation.	
+
+
+
+
+
+
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
 %
 %
 %
@@ -228,11 +278,11 @@ Taking the partial derivative of the to be maximized argument in (7) w.r.t.\ $U_
 	\end{align*}
 As this is a static equation we can omit the expectation operator here. This FONC is equivalent to the expression
 	\begin{align*}
-	\phi \delta U_t^{\phi-1}k_t 	&= \alpha z_t^{1-\alpha}(k_t U_t)^{\alpha-1}k_t \\
-	\phi \delta U_t^{\phi-1}k_t 	&= \alpha z_t^{1-\alpha} k_t^{\alpha}U_t^{\alpha-1} \\
-	\phi \delta U_t^{\phi-1} 		&= \alpha z_t^{1-\alpha} k_t^{\alpha-1} U_t^{\alpha-1} \\
-	U_t^{\phi-\alpha} 				&= (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \\
-	U_t 								&= \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}}.
+	\mathbb E_0 \phi \delta U_t^{\phi-1}k_t 	&= \alpha z_t^{1-\alpha}(k_t U_t)^{\alpha-1}k_t \\
+	\phi \delta U_t^{\phi-1}k_t 	&= \mathbb E_0 \alpha z_t^{1-\alpha} k_t^{\alpha}U_t^{\alpha-1} \\
+	\mathbb E_0 \phi \delta U_t^{\phi-1} 		&=\mathbb E_0 \alpha z_t^{1-\alpha} k_t^{\alpha-1} U_t^{\alpha-1} \\
+	\mathbb E_0 U_t^{\phi-\alpha} 				&=\mathbb E_0  (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \\
+	\mathbb E_0 U_t 								&=\mathbb E_0  \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}}.
 	\end{align*}
 In words, the capital utilization only depends on the current level of physical capital, the current level of technology and the parameters of the model. We can 
 
@@ -242,14 +292,14 @@ Using the Euler equation, we can write the time-path of consumption as
 	\end{align*}
 We have the law of motion for capital given by
 	\begin{align*}
-	k_{t+1} 	&= (1-\delta U_t^\phi)k_t - i_t, \\
-				&= \Big(1-\delta \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)k_t -  z_t^{1-\alpha}\Big(k_t \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)^\alpha  \\
-				&\quad\quad\quad + \beta \mathbb E_0 {c_{t-1}}\Big[ \alpha \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} z_t^{1-\alpha}\Big(k_t \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)^{\alpha-1}+1-\delta U_t^\phi \Big]
+	\mathbb E_0 k_{t+1} 	&= \mathbb E_0 (1-\delta U_t^\phi)k_t - i_t, \\
+				&=\mathbb E_0 \Big(1-\delta \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)k_t -  z_t^{1-\alpha}\Big(k_t \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)^\alpha  \\
+				&\quad\quad\quad + \beta {c_{t-1}}\Big[ \alpha \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} z_t^{1-\alpha}\Big(k_t \Big\{ (\phi \delta)^{-1}  \alpha z_t^{1-\alpha} k_t^{\alpha-1} \Big\}^{\frac{1}{\phi-\alpha}} \Big)^{\alpha-1}+1-\delta U_t^\phi \Big]
 	\end{align*}	
 % we need expressions for $i_t = c_t - y_t$ in terms of capital! 
 The time path for gross investment is given by
 	\begin{align*}
-	i_{t+1} = \mathbb E_0 z_{t+1}^{1-\alpha}(k_{t+1} U_{t+1})^\alpha - \beta \mathbb E_0 {c_{t}^*} \frac{\partial c_{t+1}}{\partial k_{t+1}} = \beta {c_t^*} \Big[ \alpha U_{t+1} z_{t+1}^{1-\alpha} (k_{t+1}U_{t+1})^{\alpha-1}+1-\delta U_{t+1}^\phi \Big]
+	\mathbb E_0i_{t+1} = \mathbb E_0 z_{t+1}^{1-\alpha}(k_{t+1} U_{t+1})^\alpha - \beta \mathbb E_0 {c_{t}^*} \frac{\partial c_{t+1}}{\partial k_{t+1}} =\mathbb E_0 \beta {c_t^*} \Big[ \alpha U_{t+1} z_{t+1}^{1-\alpha} (k_{t+1}U_{t+1})^{\alpha-1}+1-\delta U_{t+1}^\phi \Big]
 	\end{align*}	
 
 
