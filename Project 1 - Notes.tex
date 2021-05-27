@@ -115,15 +115,29 @@ which is the Euler equation. The current period's marginal utility of consumptio
 For the conditions to be sufficient we additionally impose the transversality condition
 	\begin{align*}
 	\lim\limits_{t\rightarrow\infty} \beta^{t-1} u^\prime(c_{t-1})k_t = 0.
+	\end{align*}		
+Assume a binding utilization constraint where we then have $\kappa_t = k_t$ and $\theta_t \neq 0$. The inter-temporal rate of substitution must be smaller 1. Now assume it does not bind, i.e.\ $\theta_t = 0$, $k_t > \kappa_t$, then we have the inter-temporal rate of substitution being equal one, $z f^\prime (\kappa_t) = \delta$. This implies that we make use of the machines up until the point where this equation holds. Assuming zero investment, then the marginal product of utilization is lower than the depreciation rate, meaning that the capital stock is too high and will reduce.
+
+We need to argue why we have full capacity usage in the steady state. We had from the third FONC that in the steady state we must have $\lambda = \beta (\lambda+\theta)$. The capacity constraint being non-binding implies $\theta = 0$, which in turn yields
+	\begin{align*}
+	\lambda = \beta \lambda \Leftrightarrow \beta = 1,
+	\end{align*}
+which is a contradiction, thus the constraint must be binding and $\kappa_t = k_t$. 	
+
+Now, in order to ensure a unique steady state, we have the following. First consider the FOCs where have in the steady state that
+	\begin{align*}
+	1 = \beta (z f^\prime(k^*)+1-\delta),
+	\end{align*}
+and also the consumption level being given by the output minus the investment, which equals the depreciated capital:
+	\begin{align*}
+	c^* = z f(k^*) - \delta k^*.
 	\end{align*}	
-We assume $k_t > 0$ in order to make sure that we have an interior solution. 	
-	
-Assume a binding utilization constraint where we then have $\kappa_t = k_t$ and $\theta_t \neq 0$. The inter-temporal rate of substitution must be smaller 1. Now assume it does not bind, i.e.\ $\theta_t = 0$, $k_t > \kappa_t$, then we have the inter-temporal rate of substitution being equal one, $z f^\prime (\kappa_t) = \delta$. This implies that we make use of the machines up until the point where this equation holds. Assuming zero investment, then the marginal product of utilization is lower than the depreciation rate, meaning that the capital stock is too high and will reduce. 
-
-
-
+As we have $f$ satisfying the Inada conditions and being monotone. The Inada conditions are given by
+	\begin{align*}
+	\lim\limits_{k\rightarrow\infty}f^\prime(k)=0,\ \lim\limits_{k\rightarrow0} f^\prime(k) = \infty.
+	\end{align*}	
 \subsection{(c) steady state capital utilization}
-Assuming we have a steady state with full capital utilization, then we have the following:
+Assuming the steady state with full capital utilization, then we have the following:
 	\begin{align*}
 	\kappa_t 					&\rightarrow \kappa^* \\
 	k_t ,k_{t+1}				&\rightarrow k^* \\
