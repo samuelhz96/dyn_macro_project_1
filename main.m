@@ -1,11 +1,12 @@
 % Project 1, Dynamic Macroeconomics with Numerics
-% Part 2
-% Samuel Hashem Zehi, Student ID 12012285
-% Roza 
-% Julian
+% Exercise 2(b)
+% Hashem Zehi, Samuel (120112285)
+% Kotiers, Róza (11945569)
+% Polzin, Julian (11948952)
+% 28.05.2021
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%% (c) General Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  General Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Specification of the function which is used to maximize the
@@ -18,9 +19,12 @@ disp(P)
 
 
 % Create anonymus function:
-fun = @(x) P.beta.*(P.alpha.*(P.alpha.*(P.deltaSS.*P.phi).^(-1).*x.^(P.alpha-1)).^(P.alpha./(P.phi-P.alpha)).*x.^(P.alpha-1)+1-P.deltaSS.*(P.alpha.*(P.deltaSS.*P.phi).^(-1).*x.^(P.alpha-1)).^(P.phi./(P.phi-P.alpha)))-1
+fun = @(x) P.beta.*(P.alpha.*(P.alpha.*(P.delta.*P.phi).^(-1).*x.^(P.alpha-1)).^(P.alpha./(P.phi-P.alpha)).*x.^(P.alpha-1)+1-P.delta.*(P.alpha.*(P.delta.*P.phi).^(-1).*x.^(P.alpha-1)).^(P.phi./(P.phi-P.alpha)))-1
 
 
+% In order to find a suitable starting value for the
+% root finding procedure we plot the function defined above
+% for a wide range of inputs
 
 % Define vector of consumption values for the plot
 c = 1:0.1:100;
@@ -44,10 +48,11 @@ x0 = 50;
 [x,fval,exitflag] = fzero(fun,x0)
 
 
-x
-
-fun2 = @(q) P.delta.*((P.alpha.*(P.deltaSS.*P.phi).^(-1).*q.^(P.alpha-1)).^(1./(P.phi-P.alpha))).^(P.phi)-P.deltaSS
-
-[x,fval,exitflag] = fzero(fun2,x0)
+% Calculate the steady state utilization
+U = (P.alpha.*(P.delta.*P.phi).^(-1).*x.^(P.alpha-1)).^(1./(P.phi-P.alpha));
+U
+% Find the steady-state depreciation
+deltaBar = P.delta.*U.^(P.phi);
+deltaBar
 
 
